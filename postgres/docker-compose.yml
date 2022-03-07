@@ -2,7 +2,7 @@ version: '3.5'
 services:
 
   i2b2c-web:
-    image: etl.i2b2c.org/i2b2c-web:${I2B2_WEB_TAG} 
+    image: i2b2/i2b2c-web:${I2B2_WEB_TAG} 
     container_name: i2b2c-web
     ports:
       - "80:80"
@@ -13,7 +13,7 @@ services:
     networks:
       - i2b2-net
   i2b2-etl:
-        image:  etl.i2b2c.org/i2b2-etl:${I2B2_ETL_TAG}
+        image:  i2b2/i2b2-etl:${I2B2_ETL_TAG}
         container_name: i2b2-etl
           
         environment:
@@ -144,7 +144,7 @@ services:
 
 
   db2:
-    image: etl.i2b2c.org/ibmdb2:beta-0.3
+    image: i2b2/ibmdb2:beta-0.3
     container_name: ibmdb2    
     privileged: true
     ports:
@@ -166,7 +166,7 @@ services:
       
 
   gitlab:
-    image: etl.i2b2c.org/gitlab:beta-0.3
+    image: i2b2/gitlab:beta-0.3
     hostname: gitlab
     container_name: gitlab
     # restart: always #unless-stopped
@@ -188,7 +188,7 @@ services:
       
 
   gitlab-runner:
-    image: etl.i2b2c.org/gitlab-runner:beta-0.3
+    image: i2b2/gitlab-runner:beta-0.3
     restart: unless-stopped
     depends_on:
       - gitlab
@@ -201,7 +201,7 @@ services:
       - i2b2-net
 
   gitlab-etc-vol-loader:
-    image: etl.i2b2c.org/gitlab-etc-vol:beta-0.3
+    image: i2b2/gitlab-etc-vol:beta-0.3
     container_name: gitlab-etc-vol-loader
     volumes:
       - gitlab-vol-etc:/etc/gitlab
@@ -210,7 +210,7 @@ services:
       - i2b2-net
   
   gitlab-var-vol-loader:
-    image: etl.i2b2c.org/gitlab-var-vol:beta-0.3
+    image: i2b2/gitlab-var-vol:beta-0.3
     container_name: gitlab-var-vol-loader
     volumes:
       - gitlab-vol-var:/var/opt/gitlab
@@ -219,7 +219,7 @@ services:
       - i2b2-net
   
   gitlab-runner-etc-vol-loader:
-    image: etl.i2b2c.org/gitlab-runner-etc-vol:beta-0.3
+    image: i2b2/gitlab-runner-etc-vol:beta-0.3
     container_name: gitlab-runner-etc-vol-loader
     volumes:
       - gitlab-runner-vol-etc:/etc/gitlab-runner
@@ -228,7 +228,7 @@ services:
       - i2b2-net
 
   ibmdb2-db-vol-loader:
-    image: etl.i2b2c.org/ibmdb2-db-vol:beta-0.3
+    image: i2b2/ibmdb2-db-vol:beta-0.3
     container_name: ibmdb2-db-vol-loader
     volumes:
       - ibmdb2-db-vol:/database
@@ -238,7 +238,7 @@ services:
   
   
   ibmdb2-var-vol-loader:
-    image: etl.i2b2c.org/ibmdb2-var-vol:beta-0.3
+    image: i2b2/ibmdb2-var-vol:beta-0.3
     container_name: ibmdb2-var-vol-loader
     volumes:
       - ibmdb2-var-vol:/var
